@@ -36,10 +36,10 @@ class App extends Component {
       search: ''
     };
   }
-  
-  
 
-  
+
+
+
   fetchData(test) {
     fetch(`https://api.github.com/search/users?q=${test}`)
       .then(response => response.json())
@@ -50,17 +50,20 @@ class App extends Component {
         console.error('Error fetching data:', error);
       });
   }
-  
-  
-  
+
+
+
   render() {
     console.log(this.state?.search);
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <input type='text' name='search' id='search' className='rounded' onChange={(e) => this.setState({ search: e.target.value })} />
-          <button onClick={()=>this.fetchData(this.state?.search)}>search</button>
+            <img src={logo} className="App-logo" alt="logo" />
+          <div className='d-flex gap-2'>
+
+            <input placeholder="github's username" type='text' name='search' id='search' className='rounded' onChange={(e) => this.setState({ search: e.target.value })} />
+            <button className='rounded border-white ' onClick={() => this.fetchData(this.state?.search)}><i class="fa fa-search" ></i></button>
+          </div>
           <UsersApiGit users={this.state?.users} />
         </header>
       </div>
